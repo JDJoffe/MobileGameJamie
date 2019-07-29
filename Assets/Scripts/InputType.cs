@@ -6,34 +6,47 @@ public class InputType : MonoBehaviour
 {
     public GameObject sphere;
     public RaycastHit hit;
-
+    public float swipeDistance;
     Vector3 prevPos;
-   
+
+    private void LateUpdate()
+    {
+      //  prevPos = Input.GetTouch(0).deltaPosition / Time.deltaTime;
+    }
     // Start is called before the first frame update
-    void OnTouchDown()
+    void OnTouchDown(Vector3 pos)
     {
         Debug.Log("Down");
-       
-       
+
+
     }
 
     // Update is called once per frame
     void OnTouchStay(Vector3 pos)
     {
-        sphere.GetComponent<Rigidbody>().useGravity = false;
+        Debug.Log("Stay");
         sphere.transform.position = pos;
-        prevPos = pos;
+        //prevPos = pos;
+
+
+
+        sphere.GetComponent<Rigidbody>().velocity = prevPos;
+
+       
     }
 
     void OnTouchUp(Vector3 pos)
     {
         Debug.Log("SADDAd");
-        sphere.GetComponent<Rigidbody>().useGravity = true;
-        sphere.GetComponent<Rigidbody>().velocity = sphere.transform.position - pos;
+
+        sphere.GetComponent<Rigidbody>().velocity = prevPos;
     }
 
     void OnTouchExit()
     {
         Debug.Log("Exit");
     }
+
+
+
 }
