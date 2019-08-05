@@ -18,7 +18,7 @@ public class Joystick : MonoBehaviour,
     [SerializeField]
     private bool snapY = false;
     [SerializeField]
-    private RectTransform background = null;
+    public RectTransform background = null;
     [SerializeField]
     private RectTransform handle = null;
 
@@ -188,11 +188,11 @@ public class Joystick : MonoBehaviour,
         handle.anchoredPosition = input * radius * handlerRange;
 
     }
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
     }
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
